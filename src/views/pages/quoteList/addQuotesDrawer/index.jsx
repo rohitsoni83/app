@@ -16,7 +16,10 @@ import { DEFAULT_ERROR_MESSAGE } from "../../../helpers/constant/utils";
 const defaultState = { username: "", text: "", fileName: "" };
 
 const AddQuoteDrawer = ({ openDrawer, closeDrawer, onSubmit }) => {
-  const [state, setState] = useState({ ...defaultState });
+  const [state, setState] = useState({
+    ...defaultState,
+    username: localStorage.getItem("user_name").toLowerCase(),
+  });
   const { username, text, fileName, file } = state;
   const uploadInputRef = useRef(null);
 
@@ -73,6 +76,7 @@ const AddQuoteDrawer = ({ openDrawer, closeDrawer, onSubmit }) => {
         <TextField
           required
           fullWidth
+          disabled
           size="small"
           name="username"
           label="User Name"
